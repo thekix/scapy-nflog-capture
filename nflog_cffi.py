@@ -255,9 +255,9 @@ if __name__ == '__main__':
     src = NFLOG().generator(qids, extra_attrs = ['len', 'ts'])
     fd = next(src)
     print('Netlink fd: {}, capturing packets from nflog queues: {}'.format(fd, qids))
-    for pkt in src:
-        if pkt is None:
+    for m_pkt in src:
+        if m_pkt is None:
             continue
-        pkt, pkt_len, ts = pkt
-        print('Got packet, len: {}, ts: {}'.format(pkt_len, ts))
-    # print('Payload:', pkt.encode('hex'))
+        m_pkt, m_pkt_len, m_ts = m_pkt
+        print('Got packet, len: {}, ts: {}'.format(m_pkt_len, m_ts))
+        # print('Payload:', m_pkt.encode('hex'))
