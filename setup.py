@@ -6,7 +6,7 @@ from setuptools import setup
 # Error-handling here is to allow package to be built w/o README included
 try:
     readme = open(os.path.join(
-        os.path.dirname(__file__), 'README.txt')).read()
+        os.path.dirname(__file__), 'README.md')).read()
 except IOError:
     readme = ''
 
@@ -45,4 +45,4 @@ setup(
     ext_modules = [NFLOG().ffi.verifier.get_extension()],
 
     py_modules = ['nflog_cffi', 'scapy_nflog'],
-    package_data = {'': ['README.txt']})
+    package_data = {'': ['README.md']})
