@@ -78,3 +78,15 @@ def install_nflog_listener(queues=None, **nflog_kwargs):
     conf.L2listen = ft.partial(NFLOGListenSocket,
                                queues=queues,
                                nflog_kwargs=nflog_kwargs)
+
+
+if __name__ == '__main__':
+    from scapy.sendrecv import sniff
+
+    def handler(m_pkt):
+        print('Got packet, len: {}, ts: {}'.format(len(m_pkt), m_pkt.time))
+        print('Payload:', bytes(m_pkt))
+
+    # Listen the NFSLOG device and call the handler per packet
+    install_nflog_listener()
+    sniff(prn=handler, store=0)
