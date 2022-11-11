@@ -3,7 +3,7 @@ from __future__ import print_function
 
 import itertools as it, operator as op, functools as ft
 import os, sys, re, errno, types, socket
-
+import logging
 from cffi import FFI
 
 
@@ -212,9 +212,10 @@ class NFLOG(object):
 			try: nlpkt_size = self.c_recv(fd, buff, buff_size, 0)
 			except NFLogError as err:
 				if handle_overflows and err.errno == errno.ENOBUFS:
-					log.warn( 'nlbufsiz seem'
-						' to be insufficient to hold unprocessed packets,'
-						' consider raising it via corresponding function keyword' )
+					logging.warning('nlbufsiz seem to be insufficient'
+									' to hold unprocessed packets,'
+									' consider raising it via'
+									' corresponding function keyword')
 					continue
 				raise
 			self.nflog_handle_packet(handle, buff, nlpkt_size, no_check=True)
