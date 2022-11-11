@@ -12,8 +12,8 @@ from nflog_cffi import NFLOG
 
 
 class NFLOGReaderThread(Thread):
-    '''Necessary only because libnetfilter_log returns
-		packets in batches, and scapy expects to poll/read them one-by-one.'''
+    """Necessary only because libnetfilter_log returns
+    packets in batches, and scapy expects to poll/read them one-by-one."""
 
     daemon = True
 
@@ -40,7 +40,8 @@ class NFLOGListenSocket(SuperSocket):
     def __init__(self, iface=None, type=ETH_P_ALL,
                  promisc=None, filter=None, nofilter=0, queues=None, nflog_kwargs=dict()):
         self.type, self.outs = type, None
-        if queues is None: queues = self.queues
+        if queues is None:
+            queues = self.queues
         self.nflog = NFLOGReaderThread(queues, **nflog_kwargs)
         self.nflog.start()
         self.ins = self.nflog.pipe_chk
@@ -48,13 +49,15 @@ class NFLOGListenSocket(SuperSocket):
     def recv(self):
         self.ins.read(1)  # used only for poll/sync
         pkt, ts = self.nflog.pipe.popleft()
-        if pkt is None: return
+        if pkt is None:
+            return
         try:
             pkt = IP(pkt)
         except KeyboardInterrupt:
             raise
         except:
-            if conf.debug_dissector: raise
+            if conf.debug_dissector:
+                raise
             pkt = conf.raw_layer(pkt)
         pkt.time = ts
         return pkt
@@ -68,7 +71,7 @@ class NFLOGListenSocket(SuperSocket):
 
 
 def install_nflog_listener(queues=None, **nflog_kwargs):
-    'Install as default scapy L2 listener.'
+    """Install as default scapy L2 listener."""
     conf.L2listen = ft.partial(NFLOGListenSocket,
                                queues = queues,
                                nflog_kwargs = nflog_kwargs)
