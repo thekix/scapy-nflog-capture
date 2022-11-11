@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
-import os, sys
-
-from distutils.core import setup
+import os
+from setuptools import setup
 
 # Error-handling here is to allow package to be built w/o README included
 try:
