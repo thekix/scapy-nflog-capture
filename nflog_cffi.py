@@ -205,15 +205,15 @@ class NFLOG(object):
             return 0
 
         for qid in (qids if not isinstance(qids, int) else [qids]):
-            qh = self.nflog_bind_group(handle, qid, check_notnull = True)
-            self.nflog_set_mode(qh, self.libnflog.NFULNL_COPY_PACKET, 0xffff)
+            qhi = self.nflog_bind_group(handle, qid, check_notnull = True)
+            self.nflog_set_mode(qhi, self.libnflog.NFULNL_COPY_PACKET, 0xffff)
             if qthresh:
-                self.nflog_set_qthresh(qh, qthresh)
+                self.nflog_set_qthresh(qhi, qthresh)
             if timeout:
-                self.nflog_set_timeout(qh, int(timeout * 100))
+                self.nflog_set_timeout(qhi, int(timeout * 100))
             if nlbufsiz:
-                self.nflog_set_nlbufsiz(qh, nlbufsiz)
-            self.nflog_callback_register(qh, recv_callback, self.ffi.NULL)
+                self.nflog_set_nlbufsiz(qhi, nlbufsiz)
+            self.nflog_callback_register(qhi, recv_callback, self.ffi.NULL)
 
         fd = self.nflog_fd(handle)
         if not buff_size:
