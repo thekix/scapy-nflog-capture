@@ -150,3 +150,11 @@ for more verbose description of these.
 Not all [libnetfilter_log-exposed
 attributes](http://www.netfilter.org/projects/libnetfilter_log/doxygen/group__Parsing.html)
 are exposed through bindings.
+
+
+### Acknowledgments
+
+This source code is based in the original source code of Mike Kazantsev <mk.fraggod@gmail.com>.
+The original source, for Python2, is at [https://github.com/mk-fg/scapy-nflog-capture](https://github.com/mk-fg/scapy-nflog-capture)
+and it was deprecated by the author.
+

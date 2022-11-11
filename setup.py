@@ -15,9 +15,9 @@ from nflog_cffi import NFLOG
 setup(
 
 	name = 'scapy-nflog-capture',
-	version = '13.06.0',
-	author = 'Mike Kazantsev',
-	author_email = 'mk.fraggod@gmail.com',
+	version = '22.11.1',
+	author = 'Rodolfo García Peñas (kix)',
+	author_email = 'kix@kix.es',
 	license = 'WTFPL',
 	keywords = [ 'nflog', 'scapy', 'plugin', 'driver', 'traffic', 'analysis',
 		'analyze', 'capture', 'dump', 'network', 'linux', 'security', 'sniffer', 'spoof',
