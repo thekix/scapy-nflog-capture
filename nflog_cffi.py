@@ -251,10 +251,10 @@ class NFLOG(object):
 
 
 if __name__ == '__main__':
-    qids = 0, 1
-    src = NFLOG().generator(qids, extra_attrs = ['len', 'ts'])
+    m_qids = 0, 1
+    src = NFLOG().generator(m_qids, extra_attrs = ['len', 'ts'])
     fd = next(src)
-    print('Netlink fd: {}, capturing packets from nflog queues: {}'.format(fd, qids))
+    print('Netlink fd: {}, capturing packets from nflog queues: {}'.format(fd, m_qids))
     for m_pkt in src:
         if m_pkt is None:
             continue
