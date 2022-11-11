@@ -38,7 +38,8 @@ class NFLOGListenSocket(SuperSocket):
     queues = range(4)
 
     def __init__(self, iface=None, type=ETH_P_ALL,
-                 promisc=None, filter=None, nofilter=0, queues=None, nflog_kwargs=None):
+                 promisc=None, filter=None, nofilter=0, queues=None, nflog_kwargs=None, **kwargs):
+        super().__init__(**kwargs)
         if nflog_kwargs is None:
             nflog_kwargs = dict()
         self.type, self.outs = type, None
@@ -48,7 +49,7 @@ class NFLOGListenSocket(SuperSocket):
         self.nflog.start()
         self.ins = self.nflog.pipe_chk
 
-    def recv(self):
+    def recv(self, **kwargs):
         self.ins.read(1)  # used only for poll/sync
         pkt, ts = self.nflog.pipe.popleft()
         if pkt is None:
