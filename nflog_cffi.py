@@ -4,6 +4,8 @@ import os
 import errno
 import socket
 import logging
+import time
+
 from cffi import FFI
 
 # Try to work around insane "write_table" operations (which assume that
@@ -184,14 +186,18 @@ class NFLOG(object):
                     for attr in extra_attrs:
                         if attr == 'len':
                             result.append(pkt_len)
-                        elif attr == 'ts':
+                        elif attr == 'ts' or attr == 'fts':
                             # Fails quite often (EAGAIN, SUCCESS, ...), not sure why
                             try:
                                 self.nflog_get_timestamp(nfad, ts_slot)
                             except NFLogError as err:
                                 if err.errno not in ts_err_mask:
                                     raise
-                                result.append(None)
+                                # If force time stamp is set
+                                if attr == 'fts':
+                                    result.append(time.time())
+                                else:
+                                    result.append(None)
                             else:
                                 result.append(ts_slot.tv_sec+ts_slot.tv_usec * 1e-6)
                         elif attr == 'prefix':
@@ -252,7 +258,7 @@ class NFLOG(object):
 
 if __name__ == '__main__':
     m_qids = 0, 1
-    src = NFLOG().generator(m_qids, extra_attrs = ['len', 'ts'])
+    src = NFLOG().generator(m_qids, extra_attrs = ['len', 'fts'])
     fd = next(src)
     print('Netlink fd: {}, capturing packets from nflog queues: {}'.format(fd, m_qids))
     for m_pkt in src:

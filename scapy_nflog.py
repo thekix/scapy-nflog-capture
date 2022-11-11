@@ -24,7 +24,7 @@ class NFLOGReaderThread(Thread):
         self.pipe_chk, self._pipe = os.fdopen(self.pipe_chk, 'r'), os.fdopen(self._pipe, 'w')
 
     def run(self):
-        nflog = NFLOG().generator(self.queues, extra_attrs = ['ts'], **self.nflog_kwargs)
+        nflog = NFLOG().generator(self.queues, extra_attrs = ['fts'], **self.nflog_kwargs)
         next(nflog)
         for pkt_info in nflog:
             self.pipe.append(pkt_info)
