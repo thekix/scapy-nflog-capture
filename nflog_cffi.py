@@ -166,7 +166,7 @@ class NFLOG(object):
             self.nflog_unbind_pf(handle, pf)
             self.nflog_bind_pf(handle, pf)
 
-        if isinstance(extra_attrs, bytes):
+        if isinstance(extra_attrs, str):
             extra_attrs = [extra_attrs]
 
         cb_results = list()
