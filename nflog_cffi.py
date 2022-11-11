@@ -1,20 +1,26 @@
 #-*- coding: utf-8 -*-
 from __future__ import print_function
-
-import itertools as it, operator as op, functools as ft
-import os, sys, re, errno, types, socket
+import os
+import errno
+import socket
 import logging
 from cffi import FFI
 
 
 # Try to work around insane "write_table" operations (which assume that
 #  they can just write lextab.py and yacctab.py in current dir), used by default.
-try: from ply.lex import Lexer
-except ImportError: pass
-else: Lexer.writetab = lambda s,*a,**k: None
-try: from ply.yacc import LRGeneratedTable
-except ImportError: pass
-else: LRGeneratedTable.write_table = lambda s,*a,**k: None
+try:
+	from ply.lex import Lexer
+except ImportError:
+	pass
+else:
+	Lexer.writetab = lambda s, *a, **k: None
+try:
+	from ply.yacc import LRGeneratedTable
+except ImportError:
+	pass
+else:
+	LRGeneratedTable.write_table = lambda s, *a, **k: None
 
 
 _cdef = '''

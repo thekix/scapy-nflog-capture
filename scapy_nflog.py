@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 
-import itertools as it, operator as op, functools as ft
+import functools as ft
 from threading import Thread
 from collections import deque
 import os
 
-from scapy.all import conf, SuperSocket, ETH_P_ALL, IP, Scapy_Exception
-from nflog_cffi import NFLOG, NFWouldBlock
+from scapy.all import conf, SuperSocket, ETH_P_ALL, Scapy_Exception
+from scapy.layers.inet import IP
+from nflog_cffi import NFLOG
 
 
 class NFLOGReaderThread(Thread):
