@@ -260,4 +260,4 @@ if __name__ == '__main__':
             continue
         m_pkt, m_pkt_len, m_ts = m_pkt
         print('Got packet, len: {}, ts: {}'.format(m_pkt_len, m_ts))
-        # print('Payload:', m_pkt.encode('hex'))
+        print('Payload:', m_pkt.hex())
