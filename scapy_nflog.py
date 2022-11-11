@@ -38,7 +38,9 @@ class NFLOGListenSocket(SuperSocket):
     queues = range(4)
 
     def __init__(self, iface=None, type=ETH_P_ALL,
-                 promisc=None, filter=None, nofilter=0, queues=None, nflog_kwargs=dict()):
+                 promisc=None, filter=None, nofilter=0, queues=None, nflog_kwargs=None):
+        if nflog_kwargs is None:
+            nflog_kwargs = dict()
         self.type, self.outs = type, None
         if queues is None:
             queues = self.queues
