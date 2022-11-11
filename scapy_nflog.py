@@ -73,5 +73,5 @@ class NFLOGListenSocket(SuperSocket):
 def install_nflog_listener(queues=None, **nflog_kwargs):
     """Install as default scapy L2 listener."""
     conf.L2listen = ft.partial(NFLOGListenSocket,
-                               queues = queues,
-                               nflog_kwargs = nflog_kwargs)
+                               queues=queues,
+                               nflog_kwargs=nflog_kwargs)
