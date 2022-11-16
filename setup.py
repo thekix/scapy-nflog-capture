@@ -27,6 +27,7 @@ setup(
 
     description = 'Driver for scapy to allow capturing packets via Linux NFLOG interface (Python 3)',
     long_description = readme,
+    long_description_content_type='text/markdown',
 
     classifiers = [
         'Development Status :: 4 - Beta',
