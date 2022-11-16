@@ -13,8 +13,8 @@ except IOError:
 from nflog_cffi import NFLOG
 
 setup(
-    name = 'scapy-nflog-capture',
-    version = '22.11.1',
+    name = 'scapy-nflog-capture3',
+    version = '22.11.2',
     author = 'Rodolfo García Peñas (kix)',
     author_email = 'kix@kix.es',
     license = 'WTFPL',
@@ -25,7 +25,7 @@ setup(
                 'libnetfilter_log', 'socket'],
     url = 'http://github.com/mk-fg/scapy-nflog-capture',
 
-    description = 'Driver for scapy to allow capturing packets via Linux NFLOG interface',
+    description = 'Driver for scapy to allow capturing packets via Linux NFLOG interface (Python 3)',
     long_description = readme,
 
     classifiers = [
