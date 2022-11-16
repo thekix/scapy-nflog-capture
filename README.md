@@ -1,4 +1,4 @@
-scapy-nflog-capture
+scapy-nflog-capture3
 --------------------
 
 Driver for [scapy network manipulation
@@ -14,28 +14,28 @@ It's a regular package for Python 3
 
 Using [pip](http://pip-installer.org/) is the best way:
 
-	% pip install scapy-nflog-capture
+	% pip install scapy-nflog-capture3
 
 If you don't have it, use:
 
 	% easy_install pip
-	% pip install scapy-nflog-capture
+	% pip install scapy-nflog-capture3
 
 Alternatively ([see
 also](http://www.pip-installer.org/en/latest/installing.html)):
 
 	% curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
-	% pip install scapy-nflog-capture
+	% pip install scapy-nflog-capture3
 
 Or, if you absolutely must:
 
-	% easy_install scapy-nflog-capture
+	% easy_install scapy-nflog-capture3
 
 But, you really shouldn't do that.
 
 Current-git version can be installed like this:
 
-	% pip install 'git+https://github.com/mk-fg/scapy-nflog-capture.git#egg=scapy-nflog-capture'
+	% pip install 'git+https://github.com/thekix/scapy-nflog-capture.git#egg=scapy-nflog-capture'
 
 
 ### Requirements
